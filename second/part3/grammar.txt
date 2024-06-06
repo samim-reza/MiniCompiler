@@ -1,0 +1,14 @@
+program ::= {statement}
+statement ::= "printf" (expression | string) nl
+            | "if" comparison " {" nl {statement} "} " nl
+            | "while" comparison " {" nl {statement} "} " nl
+            | "LABEL" ident nl
+            | "goto" ident nl
+            | "float" ident "=" expression nl
+            | "scanf" " (" string ", &" ident ") ;" nl
+comparison ::= expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)+
+expression ::= term {( "-" | "+" ) term}
+term ::= unary {( "/" | "*" ) unary}
+unary ::= ["+" | "-"] primary
+primary ::= number | ident
+nl ::= '\n'+
